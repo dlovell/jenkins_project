@@ -9,9 +9,9 @@ A project agnostic way to programmatically set up a jenkins server on EC2 via St
 * starcluster installed to local machine
 * jenkinsapi python package installed to local machine
 * 'starcluster start -c $cluster_template' will successfully start an EC2 instance
-	* We assume $cluster_template = $project_name unless you specify otherwise
+	* We assume $cluster_template = $project_name unless you specify otherwise in $config_dir/settings.sh
 * some directory exists with Jenkins job config files in XML format
-	* We assume $config_dir = /path/to/jenkins_project/$project_name unless you specify otherwise
+	* We assume $config_dir = /path/to/jenkins_project/$project_name unless you specify otherwise at command line invocation of spin_up_jenkins_server.sh
 	* Job names are created from config filenames: ${job_name}.config.xml
 	* For info on Job setup, see [README_JOB.md](https://github.com/mit-probabilistic-computing-project/jenkins_project/blob/master/README_JOB.md)
 
@@ -19,7 +19,7 @@ A project agnostic way to programmatically set up a jenkins server on EC2 via St
 
 ## To Run
 
-    bash spin_up_jenkins_server $project_name [$config_dir]
+    bash spin_up_jenkins_server.sh $project_name [$config_dir]
 
 
 ## Extras
