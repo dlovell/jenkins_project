@@ -64,6 +64,6 @@ The Jenkins user is set to use matplotlib's headless backend to prevent errors w
 
 ## TODO/Needed features: 
 
-* Using ssh keys instead of plaintext password in source (probcomp-reserve's password)
+* Programmatic configuration of Jenkins' email credentials, Github service hooks
 
 
