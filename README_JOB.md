@@ -1,7 +1,7 @@
-Instructions to create a Job on a Jenkins server
+Managing jobs
 ==================
 
-Creating a Job manually
+## Creating a Job manually
 
 * Access the Jenkins web interface at \<EC2-HOSTNAME\>:8080
   * you can determine your EC2-HOSTNAME with 'starcluster listclusters' from the machine you spun up the cluster
@@ -43,7 +43,16 @@ Creating a Job manually
          * paste desired flow token into ‘Flow API token(s)’ box
    * Click 'Save' (at the bottom) to save your configuration.
 
-----
+## Saving a Job programmatically
 
-Creating a Job programmatically from a config XML file
+jenkins_utils.py can be used to save a Job configuration as an XML file.  An example invocation:
 
+    python jenkins_utils.py -get --base_url http://<EC2-HOSTNAME>:8080 --job_name <JOB_NAME_TO_SAVE> config_filename <FILENAME_TO_SAVE_TO>
+
+Keeping <FILENAME_TO_SAVE> allows you to programmatically create the same job on a new server
+
+## Creating a Job programmatically (from a saved Job)
+
+spin_up_jenkins_server.sh will programmatically create all job names in the specified $config_dir when it is run.  You can push up new jobs at any time with:
+
+    python jenkins_utils.py -create --base_url http://<EC2-HOSTNAME>:8080 --job_name <JOB_NAME> config_filename <SAVED_CONFIG_FILENAME>
