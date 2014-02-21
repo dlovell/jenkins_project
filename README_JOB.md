@@ -1,7 +1,34 @@
 Managing jobs
 ==================
 
+
+## Saving a Job programmatically
+
+jenkins_utils.py can be used to save an already existing Job configuration as an XML file.  An example invocation:
+
+    python jenkins_utils.py -get --base_url http://<EC2-HOSTNAME>:8080 --job_name <JOB_NAME_TO_SAVE> config_filename <FILENAME_TO_SAVE_TO>
+
+Keeping <FILENAME_TO_SAVE> allows you to programmatically create the same job on a new server
+
+
+## Creating a Job programmatically (from a saved Job)
+
+spin_up_jenkins_server.sh will programmatically create all job names in the specified $config_dir when it is run.  You can push up new jobs at any time with:
+
+    python jenkins_utils.py -create --base_url http://<EC2-HOSTNAME>:8080 --job_name <JOB_NAME> config_filename <SAVED_CONFIG_FILENAME>
+
+
 ## Creating a Job manually
+
+Following the procedure below will create a basic job that
+
+* uses git for version control
+* builds when there's a push to Github
+* archives the entire project dir as well as all nosetest results
+* sends email (requires Jenkins to have email credentials specified at <EC2-HOSTNAME>:8080/configure)
+* sends notifications to a Flowdock flow
+
+----
 
 * Access the Jenkins web interface at \<EC2-HOSTNAME\>:8080
   * you can determine your EC2-HOSTNAME with 'starcluster listclusters' from the machine you spun up the cluster
@@ -42,17 +69,3 @@ Managing jobs
          * Click 'Add post-build action'
          * paste desired flow token into ‘Flow API token(s)’ box
    * Click 'Save' (at the bottom) to save your configuration.
-
-## Saving a Job programmatically
-
-jenkins_utils.py can be used to save a Job configuration as an XML file.  An example invocation:
-
-    python jenkins_utils.py -get --base_url http://<EC2-HOSTNAME>:8080 --job_name <JOB_NAME_TO_SAVE> config_filename <FILENAME_TO_SAVE_TO>
-
-Keeping <FILENAME_TO_SAVE> allows you to programmatically create the same job on a new server
-
-## Creating a Job programmatically (from a saved Job)
-
-spin_up_jenkins_server.sh will programmatically create all job names in the specified $config_dir when it is run.  You can push up new jobs at any time with:
-
-    python jenkins_utils.py -create --base_url http://<EC2-HOSTNAME>:8080 --job_name <JOB_NAME> config_filename <SAVED_CONFIG_FILENAME>
