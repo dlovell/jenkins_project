@@ -36,10 +36,6 @@ A project agnostic way to programmatically set up a jenkins server on EC2 via St
        * add '465' to the text box labelled 'SMTP Port'
   * To do this in a smarter way (recommended): set up a different mail server and enter its information.
 
-* Setting up Git Commit Hook
-	* Install Github plugin. Enter the URL for the repository, and ensure that the jenkins users' ssh keys are added on github.
-	* On Github, click on the repository settings, and add a post-receive hook. Click the github plugin page, and add the url for the jenkins server, appended with "/github-webhook/".
-
 
 ## Notes
 
