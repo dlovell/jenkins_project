@@ -32,8 +32,6 @@ function update_jenkins () {
 	# https://gist.github.com/jedi4ever/898114
 	wget http://updates.jenkins-ci.org/update-center.json -qO- | sed '1d;$d' > default.json
 	curl -X POST -H "Accept: application/json" -d @default.json $jenkins_uri/updateCenter/byId/default/postBack --verbose
-
-
 }
 
 function install_jenkins_plugin () {
@@ -66,6 +64,7 @@ function wait_for_web_response () {
 
 install_jenkins
 # if you don't update, you can't install by short name
+wait_for_web_response $jenkins_uri
 update_jenkins
 # make sure jenkins api available for job setup automation
 pip install jenkinsapi==$jenkinsapi_version

@@ -18,7 +18,7 @@ this_script_dirname=$(dirname $this_script_abs_path)
 cd $this_script_dirname
 
 
-settings_script=settings.sh
+settings_script=$project_name/settings.sh
 jenkins_setup_script=setup_jenkins.sh
 jenkins_utils_script=jenkins_utils.py
 open_port_script=open_master_port_via_starcluster_shell.py
@@ -36,7 +36,6 @@ cluster_template=$project_name
 instance_type=c1.xlarge
 num_intances=1
 # pull from project settings.sh if it exists
-settings_script=$project_dir/$settings_script
 if [ -f $settings_script ]; then
 	. $settings_script
 fi
