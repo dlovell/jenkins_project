@@ -23,7 +23,7 @@ spin_up_jenkins_server.sh will programmatically create all job names in the spec
 Following the procedure below will create a basic job that
 
 * uses git for version control
-* builds when there's a push to Github (requires Github "Jenkins (Git plugin)" service to be enabled
+* builds when there's a push to Github (requires Github "Jenkins (Git plugin)" service to be enabled)
 * archives the entire project dir as well as all nosetest results
 * sends email (requires Jenkins to have email credentials specified at \<EC2-HOSTNAME\>:8080/configure)
 * sends notifications to a Flowdock flow
