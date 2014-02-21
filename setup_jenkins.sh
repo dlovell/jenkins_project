@@ -28,6 +28,14 @@ function install_jenkins () {
 	sudo apt-get install -y jenkins
 }
 
+function update_jenkins () {
+	# https://gist.github.com/jedi4ever/898114
+	wget http://updates.jenkins-ci.org/update-center.json -qO- | sed '1d;$d' > default.json
+	curl -X POST -H "Accept: application/json" -d @default.json $jenkins_uri/updateCenter/byId/default/postBack --verbose
+
+
+}
+
 function install_jenkins_plugin () {
 	plugin_name=$1
 	plugin_dir=${jar_dir}/plugins/
@@ -57,6 +65,8 @@ function wait_for_web_response () {
 
 
 install_jenkins
+# if you don't update, you can't install by short name
+update_jenkins
 # make sure jenkins api available for job setup automation
 pip install jenkinsapi==$jenkinsapi_version
 
@@ -65,7 +75,7 @@ pip install jenkinsapi==$jenkinsapi_version
 wait_for_web_response $jenkins_uri
 # install plugins
 for jenkins_plugin in ${jenkins_plugins[*]}; do
-	install_jenkins_plugin $jenkins_plugins
+	install_jenkins_plugin $jenkins_plugin
 done
 # restart before continuing
 restart_jenkins
