@@ -47,16 +47,16 @@ fi
 # spin up the cluster
 starcluster start -c $cluster_template -i $instance_type -s $num_intances $cluster_name
 hostname=$(starcluster listclusters $cluster_name | grep master | awk '{print $NF}')
-# bypass key checking
-ssh -o PasswordAuthentication=no -o StrictHostKeyChecking=no jenkins@$hostname exit || true
 
+# bypass key checking
+ssh -o PasswordAuthentication=no -o StrictHostKeyChecking=no $hostname exit || true
 
 # open up the port for jenkins
-starcluster shell < <(perl -pe "s/'crosscat'/'$cluster_name'/" $open_port_script)
-# set up jenkins
+starcluster shell < $open_port_script $cluster_name
+
+# install jenkins and jenkins plugins
 starcluster sshmaster $cluster_name "(git clone $jenkins_repo_uri)"
 starcluster sshmaster $cluster_name bash $jenkins_project_name/$jenkins_setup_script
-
 
 # push up jenkins configuration
 # jenkins server must be up and ready
@@ -69,7 +69,6 @@ for config_filename in $config_dir/*$config_filename_suffix; do
 	--job_name $job_name \
 	-create
 done
-
 
 # notify user what hostname is
 echo $hostname
