@@ -13,6 +13,8 @@ A project agnostic way to programmatically set up a jenkins server on EC2 via St
 * some directory exists with Jenkins job config files in XML format
 	* We assume $config_dir = /path/to/jenkins_project/$project_name unless you specify otherwise
 	* Job names are created from config filenames: ${job_name}.config.xml
+	* For info on Job setup, see [README_JOB.md](https://github.com/mit-probabilistic-computing-project/jenkins_project/blob/master/README_JOB.md)
+
  
 
 ## To Run
