@@ -21,6 +21,12 @@ A project agnostic way to programmatically set up a jenkins server on EC2 via St
 
     bash spin_up_jenkins_server.sh $project_name [$config_dir]
 
+## Setting up Security
+
+After the machine is spun up, you should follow Jenkins' [Standard Security Setup](https://wiki.jenkins-ci.org/display/JENKINS/Standard+Security+Setup) procedure.
+
+**Failing to heed this warning may result in your EC2 machine being hijacked by bitcoin miners.**
+
 
 ## Extras
 
