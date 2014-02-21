@@ -37,7 +37,7 @@ instance_type=c1.xlarge
 num_intances=1
 # pull from project settings.sh if it exists
 settings_script=$project_dir/$settings_script
-if [ -f $settings_script]; then
+if [ -f $settings_script ]; then
 	. $settings_script
 fi
 
