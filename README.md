@@ -24,31 +24,30 @@ A project agnostic way to programmatically set up a jenkins server on EC2 via St
 
 ## Extras
 
-* Configure email.
+### Configure email.
 
-  * Go to \<EC2-HOSTNAME\>:8080/configure. Fill out the forms under the 'E-mail Notification' section
-  * To use your own gmail account (only works with 2-factor authentication):
-       * Sender E-mail Address: your address
-       		* FIXME: is this 'System Admin e-mail address' under Jenkins Location?
+* Go to \<EC2-HOSTNAME\>:8080/configure. Fill out
+  * 'System Admin e-mail address' under Jenkins Location
+  * The fields under the 'E-mail Notification' section
+    * To use your own gmail account (only works with 2-factor authentication), under the 'E-mail Notification' section:
        * SMTP server: smtp.gmail.com
-       * Click "Advanced"
+       * Click 'Advanced'
        * Check 'Use SMTP Authentication'
        * User Name: your gmail username
        * Password: your gmail password (application-specific if you use 2-factor authentication)
        * Check 'Use SSL'
        * add '465' to the text box labelled 'SMTP Port'
-  * To do this in a smarter way (recommended): set up a different mail server and enter its information.
 
-* Set up Github Jenkins service
-  * Browse to \<REPO-URL\>/settings/hooks
-  * Click "Configure services" button
-  * Click "Jenkins (Git plugin)"
-  * In the "Jenkins Url" text box, enter "http://\<EC2-HOSTNAME\>:8080"
-  * Click checkbox "Active"
-  * Click "Update settings" button
-  * Optionally: Click "Test Hook" button
-  	* You can veriy "it worked" by browsing to http://\<EC2-HOSTNAME\>:8080/job/\<JOBNAME\>/scmPollLog/?
-  	* If it worked, you should NOT see: "Polling has not run yet."
+### Set up Github's "Jenkins (Git plugin)" service
+* Browse to \<REPO-URL\>/settings/hooks
+* Click "Configure services" button
+* Click "Jenkins (Git plugin)"
+* In the "Jenkins Url" text box, enter "http://\<EC2-HOSTNAME\>:8080"
+* Click checkbox "Active"
+* Click "Update settings" button
+* Optionally: Click "Test Hook" button
+    * You can veriy "it worked" by browsing to http://\<EC2-HOSTNAME\>:8080/job/\<JOBNAME\>/scmPollLog/?
+    * If it worked, you should NOT see: "Polling has not run yet."
 
 ## Notes
 
