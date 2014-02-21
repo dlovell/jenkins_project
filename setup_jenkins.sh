@@ -5,12 +5,7 @@ set -v
 
 # settings
 jenkins_plugins=(
-	scm-api
-	credentials
-	ssh-credentials
-	git-client
 	git
-	github-api
 	github
 	jenkins-flowdock-plugin
 	)
