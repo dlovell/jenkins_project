@@ -31,7 +31,7 @@ get_port_open = functools.partial(master.ec2.has_permission, group, protocol,
 
 
 if not get_port_open():
-    log_str = "Authorizing tcp port on %s for: %s" % \
+    log_str = "Authorizing tcp port %s on %s for: %s" % \
             (port, world_cidr, service_name)
     print log_str
     master.ec2.conn.authorize_security_group(
