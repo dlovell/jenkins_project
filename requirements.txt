@@ -1,0 +1,2 @@
+starcluster
+jenkinsapi>=0.1.13

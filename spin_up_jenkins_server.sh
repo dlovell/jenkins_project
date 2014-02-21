@@ -5,20 +5,24 @@ set -v
 
 # modifiable setings
 project_name=$1
+config_dir=$2
 if [ -z $project_name ]; then
-	echo "project_name must not be blank"
+	echo "!!! $0: project_name must NOT be blank"
+	echo "!!! $0: project_name must NOT be blank"
 	exit 1
+fi
+if [ -z $config_dir ]; then
+	config_dir=$project_name
 fi
 
 
-# get some path info
+# everything is relative to this script's dir
 this_script_abs_path=$(readlink -f "$0")
 this_script_dirname=$(dirname $this_script_abs_path)
-# everything is relative to this script's dir
 cd $this_script_dirname
 
 
-settings_script=$project_name/settings.sh
+settings_script=$config_dir/settings.sh
 jenkins_setup_script=setup_jenkins.sh
 jenkins_utils_script=jenkins_utils.py
 open_port_script=open_master_port_via_starcluster_shell.py
@@ -30,7 +34,6 @@ jenkins_repo_uri=$probcomp_base_uri/$jenkins_project_name
 
 
 # set some defaults
-project_dir=$project_name
 cluster_name=${project_name}_jenkins
 cluster_template=$project_name
 instance_type=c1.xlarge
@@ -58,7 +61,7 @@ starcluster sshmaster $cluster_name bash $jenkins_project_name/$jenkins_setup_sc
 # push up jenkins configuration
 # jenkins server must be up and ready
 jenkins_uri=http://$hostname:8080
-for config_filename in $project_dir/*$config_filename_suffix; do
+for config_filename in $config_dir/*$config_filename_suffix; do
 	job_name=$(basename ${config_filename%$config_filename_suffix})
 	python $jenkins_utils_script \
 	--base_url $jenkins_uri \
