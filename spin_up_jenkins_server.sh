@@ -31,7 +31,7 @@ jenkins_repo_uri=$probcomp_base_uri/$jenkins_project_name
 
 # set some defaults
 project_dir=$project_name
-cluster_name=$project_name
+cluster_name=${project_name}_jenkins
 cluster_template=$project_name
 instance_type=c1.xlarge
 num_intances=1
