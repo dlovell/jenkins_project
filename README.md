@@ -24,9 +24,9 @@ A project agnostic way to programmatically set up a jenkins server on EC2 via St
 ## Setting up Security
 
 After the machine is spun up, you should follow Jenkins' [Standard Security Setup](https://wiki.jenkins-ci.org/display/JENKINS/Standard+Security+Setup) procedure.
+* To allow any user to view results, the 'Anonymous' user must have 'Read' permission for the 'Job' category.
 
 **Failing to heed this warning may result in your EC2 machine being hijacked by bitcoin miners.**
-
 
 ## Extras
 
