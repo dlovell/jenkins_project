@@ -4,7 +4,7 @@ jenkins_project
 A project agnostic way to programmatically set up a jenkins server on EC2 via StarCluster and create 'job's
 
 
-## Preqrequisistes
+## Prerequisites
 
 * starcluster installed to local machine
 * jenkinsapi python package installed to local machine
