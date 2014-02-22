@@ -66,6 +66,7 @@ Following the procedure below will create a basic job that
          * select 'Email Notification' from the drop down
          * add '\<PROJECT-NAME\>-dev@mit.edu' to the text box labelled 'Recipients'
       * Add a Flowdock action
+         * **NOTE**: the Flowdock token should not be included in content of saved job configs
          * go to flowdock tokens page: https://www.flowdock.com/account/tokens
          * copy the desired **flow** token
          * Click 'Add post-build action'
