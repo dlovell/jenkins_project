@@ -49,7 +49,7 @@ python crosscat/tests/geweke_on_schemas.py  --dirname $dirname</command>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
       <artifacts>geweke_on_schemas/**</artifacts>
-      <latestOnly>false</latestOnly>
+      <latestOnly>true</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>
     <hudson.tasks.Mailer plugin="mailer@1.5">
