@@ -1,6 +1,9 @@
 Managing jobs
 ==================
 
+## Security
+
+If you have [jenkins security](https://github.com/mit-probabilistic-computing-project/jenkins_project/blob/master/README.md#setting-up-security) set up, you will need to append `--username <username> --password <password>` to all the jenkins_utils.py commands below.
 
 ## Saving a Job programmatically
 
@@ -13,7 +16,7 @@ Keeping \<FILENAME_TO_SAVE\> allows you to programmatically create the same job 
 
 ## Creating a Job programmatically (from a saved Job)
 
-spin_up_jenkins_server.sh will programmatically create all job's specified by config files in $config_dir when it is run.  You can push up new jobs at any time with:
+spin_up_jenkins_server.sh will programmatically create all job's specified by config files in `$config_dir` when it is run.  You can push up new jobs at any time with:
 
     python jenkins_utils.py -create --base_url http://<EC2-HOSTNAME>:8080 --job_name <JOB_NAME> --config_filename <SAVED_CONFIG_FILENAME>
 
