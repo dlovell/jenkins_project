@@ -6,7 +6,7 @@ Managing jobs
 
 jenkins_utils.py can be used to save an already existing Job configuration as an XML file.  An example invocation:
 
-    python jenkins_utils.py -get --base_url http://<EC2-HOSTNAME>:8080 --job_name <JOB_NAME_TO_SAVE> config_filename <FILENAME_TO_SAVE_TO>
+    python jenkins_utils.py -get --base_url http://<EC2-HOSTNAME>:8080 --job_name <JOB_NAME_TO_SAVE> --config_filename <FILENAME_TO_SAVE_TO>
 
 Keeping <FILENAME_TO_SAVE> allows you to programmatically create the same job on a new server
 
@@ -15,7 +15,7 @@ Keeping <FILENAME_TO_SAVE> allows you to programmatically create the same job on
 
 spin_up_jenkins_server.sh will programmatically create all job names in the specified $config_dir when it is run.  You can push up new jobs at any time with:
 
-    python jenkins_utils.py -create --base_url http://<EC2-HOSTNAME>:8080 --job_name <JOB_NAME> config_filename <SAVED_CONFIG_FILENAME>
+    python jenkins_utils.py -create --base_url http://<EC2-HOSTNAME>:8080 --job_name <JOB_NAME> --config_filename <SAVED_CONFIG_FILENAME>
 
 
 ## Creating a Job manually
