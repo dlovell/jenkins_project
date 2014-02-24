@@ -23,10 +23,12 @@ A project agnostic way to programmatically set up a jenkins server on EC2 via St
 
 ## Setting up Security
 
-After the machine is spun up, you should follow Jenkins' [Standard Security Setup](https://wiki.jenkins-ci.org/display/JENKINS/Standard+Security+Setup) procedure.
-* To allow any user to view results, the 'Anonymous' user must have 'Read' permission for the 'Job' category.
+After the machine is spun up, you should immediately follow Jenkins' [Standard Security Setup](https://wiki.jenkins-ci.org/display/JENKINS/Standard+Security+Setup) procedure.
+* To allow anybody to view results, retain the 'Anonymous' user giving it only 'Read' permission in the 'Overall' and 'Job' categories.
+* Retain the new username and password you create to pass to jenkins_utils.py with its `--username` and `--password` arguments.
 
 **Failing to heed this warning may result in your EC2 machine being hijacked by bitcoin miners.**
+
 
 ## Extras
 
@@ -64,6 +66,6 @@ The Jenkins user is set to use matplotlib's headless backend to prevent errors w
 
 ## TODO/Needed features: 
 
-* Programmatic configuration of Jenkins' email credentials, Github service hooks
+* Programmatic configuration of Jenkins' email credentials, Jenkins' security, Github service hooks
 
 
