@@ -41,7 +41,7 @@
     <hudson.tasks.Shell>
       <command>python setup.py build_ext --inplace
 python setup.py install
-find . -name nosetests.xml | xargs rm
+find . -name nosetests.xml | xargs -n 1 rm -f
 nosetests --with-xunit -w crosscat/tests/unit_tests</command>
     </hudson.tasks.Shell>
   </builders>
