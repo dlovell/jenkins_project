@@ -22,10 +22,9 @@ import argparse
 import jenkinsapi.jenkins
 import jenkinsapi.job
 
-
 def get_jenkins_obj(base_url):
-	jenkins_obj = jenkinsapi.jenkins.Jenkins(base_url)
-	return jenkins_obj
+    jenkins_obj = jenkinsapi.jenkins.Jenkins(base_url, **kwargs)
+    return jenkins_obj
 
 def get_jenkins_job(base_url, job_name):
 	jenkins_obj = get_jenkins_obj(base_url)
@@ -74,6 +73,8 @@ if __name__ == '__main__':
 	parser.add_argument('--base_url', default='http://localhost:8080', type=str)
 	parser.add_argument('--job_name', default='crosscat-unit-tests', type=str)
 	parser.add_argument('--config_filename', default='crosscat-unit-tests.config.xml', type=str)
+	parser.add_argument('--username', default=None, type=str)
+	parser.add_argument('--password', default=None, type=str)
 	parser.add_argument('-create', action='store_true')
 	parser.add_argument('-delete', action='store_true')
 	parser.add_argument('-put', action='store_true')
@@ -89,6 +90,10 @@ if __name__ == '__main__':
 	do_put = args.put
 	do_get = args.get
 	do_invoke = args.invoke
+	username = args.username
+	password = args.password
+    #
+	kwargs = dict(username=username, password=password)
 	#
 	if do_create:
 		config = read_file(config_filename)
