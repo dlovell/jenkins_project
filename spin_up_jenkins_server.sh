@@ -54,6 +54,10 @@ ssh -o PasswordAuthentication=no -o StrictHostKeyChecking=no $hostname exit || t
 # open up the port for jenkins
 starcluster shell < $open_port_script $cluster_name
 
+# set time zone
+starcluster sshmaster $cluster_name 'echo "America/New_York" | tee /etc/timezone'
+starcluster sshmaster $cluster_name "dpkg-reconfigure --frontend noninteractive tzdata"
+
 # install jenkins and jenkins plugins
 starcluster sshmaster $cluster_name "(git clone $jenkins_repo_uri)"
 starcluster sshmaster $cluster_name bash $jenkins_project_name/$jenkins_setup_script
