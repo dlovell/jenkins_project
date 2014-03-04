@@ -22,6 +22,7 @@ import argparse
 import jenkinsapi.jenkins
 import jenkinsapi.job
 
+
 def get_jenkins_obj(base_url):
     jenkins_obj = jenkinsapi.jenkins.Jenkins(base_url, **kwargs)
     return jenkins_obj
@@ -35,6 +36,14 @@ def get_existing_config(base_url, job_name):
     jenkins_job = get_jenkins_job(base_url, job_name)
     config = jenkins_job.get_config()
     return config
+
+def get_all_existing_configs(base_url):
+    jenkins_obj = jenkinsapi.jenkins.Jenkins(base_url, **kwargs)
+    config_lookup = dict(
+        (name, job.get_config())
+        for name, job in jenkins_obj.jobs.iteritems()
+    )
+    return config_lookup
 
 def update_existing_job_config(base_url, job_name, config):
     jenkins_job = get_jenkins_job(base_url, job_name)
@@ -67,6 +76,7 @@ def write_file(config, config_filename):
         fh.write(config)
     return
 
+config_filename_suffix = '.config.xml'
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -99,6 +109,11 @@ if __name__ == '__main__':
     def do_get():
         config = get_existing_config(base_url, job_name)
         write_file(config, config_filename)
+    def do_get_all():
+        config_lookup = get_all_existing_configs(base_url)
+        for config_name, config in config_lookup.iteritems():
+            config_filename = config_name + config_filename_suffix
+            write_file(config, config_filename)
     def do_invoke():
         invoke(base_url, job_name)
     def no_action():
@@ -109,6 +124,7 @@ if __name__ == '__main__':
             delete=do_delete,
             put=do_put,
             get=do_get,
+            get_all=do_get_all,
             invoke=do_invoke,
             no_action=no_action,
             )
