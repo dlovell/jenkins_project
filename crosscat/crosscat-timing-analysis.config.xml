@@ -45,12 +45,16 @@
       <command>python setup.py develop
 dirname=timing_analysis
 rm -rf $dirname
-python crosscat/tests/timing_analysis.py  --dirname $dirname</command>
+python crosscat/tests/timing_analysis.py  --dirname $dirname
+rm *png
+for vary_what in rows cols clusters views; do
+    python crosscat/tests/plot_timing_analysis.py --vary_what $vary_what --plot_filename vary_${vary_what};
+done</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>timing_analysis/**</artifacts>
+      <artifacts>timing_analysis/**, *png</artifacts>
       <latestOnly>true</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>
