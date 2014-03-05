@@ -45,11 +45,8 @@
       <command>python setup.py develop
 dirname=timing_analysis
 rm -rf $dirname
-python crosscat/tests/timing_analysis.py  --dirname $dirname
 rm -f *png
-for vary_what in rows cols clusters views; do
-    python crosscat/tests/plot_timing_analysis.py --vary_what $vary_what --plot_filename vary_${vary_what};
-done</command>
+python crosscat/tests/timing_analysis.py  --dirname $dirname</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
@@ -63,6 +60,43 @@ done</command>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
+    <com.flowdock.jenkins.FlowdockNotifier plugin="jenkins-flowdock-plugin@1.1.3">
+      <flowToken>9516e03b360c6e315a453075e6cd889e</flowToken>
+      <notificationTags></notificationTags>
+      <chatNotification>false</chatNotification>
+      <notifyMap>
+        <entry>
+          <com.flowdock.jenkins.BuildResult>NOT_BUILT</com.flowdock.jenkins.BuildResult>
+          <boolean>false</boolean>
+        </entry>
+        <entry>
+          <com.flowdock.jenkins.BuildResult>UNSTABLE</com.flowdock.jenkins.BuildResult>
+          <boolean>false</boolean>
+        </entry>
+        <entry>
+          <com.flowdock.jenkins.BuildResult>FAILURE</com.flowdock.jenkins.BuildResult>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <com.flowdock.jenkins.BuildResult>ABORTED</com.flowdock.jenkins.BuildResult>
+          <boolean>false</boolean>
+        </entry>
+        <entry>
+          <com.flowdock.jenkins.BuildResult>FIXED</com.flowdock.jenkins.BuildResult>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <com.flowdock.jenkins.BuildResult>SUCCESS</com.flowdock.jenkins.BuildResult>
+          <boolean>true</boolean>
+        </entry>
+      </notifyMap>
+      <notifySuccess>true</notifySuccess>
+      <notifyFailure>true</notifyFailure>
+      <notifyFixed>true</notifyFixed>
+      <notifyUnstable>false</notifyUnstable>
+      <notifyAborted>false</notifyAborted>
+      <notifyNotBuilt>false</notifyNotBuilt>
+    </com.flowdock.jenkins.FlowdockNotifier>
   </publishers>
   <buildWrappers/>
 </project>
