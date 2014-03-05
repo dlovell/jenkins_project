@@ -42,14 +42,12 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>python setup.py develop
+      <command>python setup.py install
+python setup.py build_ext --inplace
 dirname=timing_analysis
 rm -rf $dirname
-python crosscat/tests/timing_analysis.py  --dirname $dirname
 rm -f *png
-for vary_what in rows cols clusters views; do
-    python crosscat/tests/plot_timing_analysis.py --vary_what $vary_what --plot_filename vary_${vary_what};
-done</command>
+python crosscat/tests/timing_analysis.py  --dirname $dirname</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>

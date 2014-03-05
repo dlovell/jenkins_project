@@ -13,6 +13,9 @@
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
+        <name>*/timing-analysis</name>
+      </hudson.plugins.git.BranchSpec>
+      <hudson.plugins.git.BranchSpec>
         <name>*/master</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
@@ -28,27 +31,21 @@
     <hudson.triggers.TimerTrigger>
       <spec>H(0-9) 0  * * *</spec>
     </hudson.triggers.TimerTrigger>
-    <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.8">
-      <spec></spec>
-    </com.cloudbees.jenkins.GitHubPushTrigger>
-    <hudson.triggers.SCMTrigger>
-      <spec></spec>
-      <ignorePostCommitHooks>false</ignorePostCommitHooks>
-    </hudson.triggers.SCMTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
       <command>python setup.py install
 python setup.py build_ext --inplace
-dirname=geweke_on_schemas
+dirname=timing_analysis
 rm -rf $dirname
-python crosscat/tests/geweke_on_schemas.py  --dirname $dirname</command>
+rm -f *png
+python crosscat/tests/timing_analysis.py --num_rows 100 400 1000 4000 10000 --num_cols 8 16 32 64 --num_clusters 2 4 10 50 --num_views 2 4 8 --dirname $dirname --plot_prefix long</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>geweke_on_schemas/**</artifacts>
+      <artifacts>timing_analysis/**, *png</artifacts>
       <latestOnly>true</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>

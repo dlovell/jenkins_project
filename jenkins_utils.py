@@ -78,17 +78,29 @@ def write_file(config, config_filename):
 
 config_filename_suffix = '.config.xml'
 
+def arbirate_args(args):
+    if args.config_filename is None:
+        args.config_filename = args.job_name + config_filename_suffix
+    if args.base_url is None:
+        args.base_url = 'http://%s:8080' % args.hostname
+    else:
+        # ignore hostname if base_url is provided
+        # make it explicit by modifying hostname
+        args.hostname = None
+    return args
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--action', default='no_action', type=str)
-    parser.add_argument('--base_url', default='http://localhost:8080', type=str)
+    parser.add_argument('--hostname', default='localhost', type=str)
+    parser.add_argument('--base_url', default=None, type=str)
     parser.add_argument('--job_name', default='crosscat-unit-tests', type=str)
-    parser.add_argument('--config_filename',
-                        default='crosscat-unit-tests.config.xml', type=str)
+    parser.add_argument('--config_filename', default=None, type=str)
     parser.add_argument('--username', default=None, type=str)
     parser.add_argument('--password', default=None, type=str)
     #
     args = parser.parse_args()
+    args = arbirate_args(args)
     action = args.action
     base_url = args.base_url
     job_name = args.job_name
@@ -97,6 +109,7 @@ if __name__ == '__main__':
     password = args.password
     #
     kwargs = dict(username=username, password=password)
+
 
     def do_create():
         config = read_file(config_filename)
