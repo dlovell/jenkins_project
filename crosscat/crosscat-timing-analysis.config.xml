@@ -42,7 +42,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>python setup.py develop
+      <command>python setup.py install
+python setup.py build_ext --inplace
 dirname=timing_analysis
 rm -rf $dirname
 rm -f *png
