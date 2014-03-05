@@ -56,6 +56,12 @@ After the machine is spun up, you should immediately follow Jenkins' [Standard S
     * You can veriy "it worked" by browsing to http://\<EC2-HOSTNAME\>:8080/job/\<JOBNAME\>/scmPollLog/?
     * If it worked, you should NOT see: "Polling has not run yet."
 
+### Including link to jobs in Flowdock notifications
+
+Flowdock notifcations must be set up on a [per job basis](https://github.com/mit-probabilistic-computing-project/jenkins_project/blob/master/README_JOB.md).
+
+For Jenkins' Flowdock notifications to include a link back to the build its referring to, both "Jenkins URL" and  "System Admin e-mail address" must be set under "Manage Jenkins" -> "Configure System" -> "Jenkins Location" (http://\<HOSTNAME\>:8080/configure)
+
 ## Notes
 
 The Jenkins user is set to use matplotlib's headless backend to prevent errors when matplotlib can't find a display
