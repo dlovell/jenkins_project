@@ -39,8 +39,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>python setup.py build_ext --inplace
-python setup.py install
+      <command>python setup.py develop
 dirname=geweke_on_schemas
 rm -rf $dirname
 python crosscat/tests/geweke_on_schemas.py  --dirname $dirname</command>
