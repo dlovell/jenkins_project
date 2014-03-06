@@ -88,3 +88,7 @@ chown -R jenkins $jenkins_home
 # make sure jenkins can install python packages
 python_dir=/usr/local/lib/python2.7/dist-packages
 chown -R jenkins $python_dir
+
+# make sure jenkins can install binaries
+bin_dir=/usr/local/bin
+chown -R jenkins $bin_dir
