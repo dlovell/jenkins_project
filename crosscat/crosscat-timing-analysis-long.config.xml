@@ -40,7 +40,7 @@ python setup.py build_ext --inplace
 dirname=timing_analysis
 rm -rf $dirname
 rm -f *png
-python crosscat/tests/timing_analysis.py --num_rows 100 400 1000 4000 10000 --num_cols 8 16 32 64 --num_clusters 2 4 10 50 --num_views 2 4 8 --dirname $dirname --plot_prefix long</command>
+python crosscat/tests/timing_analysis.py --num_rows 100 400 1000 4000 10000 --num_cols 8 16 32 --num_clusters 2 4 10 50 --num_views 2 4 8 --dirname $dirname --plot_prefix long</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
