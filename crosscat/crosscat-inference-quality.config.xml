@@ -41,14 +41,19 @@
     <hudson.tasks.Shell>
       <command>python setup.py install
 python setup.py build_ext --inplace
+#
 dirname=geweke_on_schemas
 rm -rf $dirname
-python crosscat/tests/geweke_on_schemas.py  --dirname $dirname</command>
+python crosscat/tests/geweke_on_schemas.py  --dirname $dirname
+#
+dirname=test_log_likelihood
+rm -rf $dirname
+python crosscat/tests/test_log_likelihood.py  --dirname $dirname</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>geweke_on_schemas/**</artifacts>
+      <artifacts>geweke_on_schemas/**, test_log_likelihood/**</artifacts>
       <latestOnly>true</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>
