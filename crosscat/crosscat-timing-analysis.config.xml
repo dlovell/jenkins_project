@@ -46,13 +46,12 @@
 python setup.py build_ext --inplace
 dirname=timing_analysis
 rm -rf $dirname
-rm -f *png
 python crosscat/tests/timing_analysis.py  --dirname $dirname</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>timing_analysis/**, *png</artifacts>
+      <artifacts>timing_analysis/**</artifacts>
       <latestOnly>true</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>
