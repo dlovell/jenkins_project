@@ -93,6 +93,15 @@ nosetests --with-xunit -w crosscat/tests/unit_tests</command>
       <notifyAborted>false</notifyAborted>
       <notifyNotBuilt>false</notifyNotBuilt>
     </com.flowdock.jenkins.FlowdockNotifier>
+    <hudson.tasks.BuildTrigger>
+      <childProjects>crosscat-inference-quality</childProjects>
+      <threshold>
+        <name>SUCCESS</name>
+        <ordinal>0</ordinal>
+        <color>BLUE</color>
+        <completeBuild>true</completeBuild>
+      </threshold>
+    </hudson.tasks.BuildTrigger>
   </publishers>
   <buildWrappers/>
 </project>
