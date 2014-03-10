@@ -39,10 +39,9 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>python setup.py install
-python setup.py build_ext --inplace
+      <command>python setup.py build_ext --inplace
 find . -name nosetests.xml | xargs -n 1 rm -f
-nosetests --with-xunit -w crosscat/tests/unit_tests</command>
+PYTHONPATH=$(pwd):$PYTHONPATH nosetests --with-xunit -w crosscat/tests/unit_tests</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
