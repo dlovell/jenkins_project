@@ -42,11 +42,10 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>python setup.py install
-python setup.py build_ext --inplace
+      <command>python setup.py build_ext --inplace
 dirname=timing_analysis
 rm -rf $dirname
-python crosscat/tests/timing_analysis.py  --dirname $dirname</command>
+PYTHONPATH=$(pwd):$PYTHONPATH python crosscat/tests/timing_analysis.py  --dirname $dirname</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
