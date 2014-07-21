@@ -71,7 +71,7 @@ for config_filename in $config_dir/*$config_filename_suffix; do
 	--base_url $jenkins_uri \
 	--config_filename $config_filename \
 	--job_name $job_name \
-	-create
+	--action create
 done
 
 # notify user what hostname is
